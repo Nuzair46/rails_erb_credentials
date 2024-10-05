@@ -1,0 +1,40 @@
+version: 2.1
+
+executors:
+  ruby-executor:
+    docker:
+      - image: cimg/ruby:3.3.3
+    working_directory: ~/repo
+
+jobs:
+  test:
+    executor: ruby-executor
+    steps:
+      - checkout
+      - restore_cache:
+          keys:
+            - gem-cache-v1-{{ arch }}-{{ checksum "Gemfile.lock" }}
+            - gem-cache-v1-{{ arch }}
+
+      - run:
+          name: Install Dependencies
+          command: |
+            gem install bundler
+            bundle config set --local without 'development'
+            bundle install --jobs=4 --retry=3 --full-index
+      - run:
+          name: Setup
+          command: ./bin/setup
+      - save_cache:
+          paths:
+            - vendor/bundle
+          key: gem-cache-v1-{{ arch }}-{{ checksum "Gemfile.lock" }}
+
+      - run:
+          name: Run Tests
+          command: ./bin/test
+
+workflows:
+  run_test:
+    jobs:
+      - test
