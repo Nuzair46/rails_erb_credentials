@@ -1,34 +1,42 @@
 # RailsErbCredentials
 
-TODO: Delete this and the text below, and describe your gem
+A drop in replacements for Rails credentials to support good old ERB.
 
-Welcome to your new gem! In this directory, you'll find the files you need to be able to package up your Ruby library into a gem. Put your Ruby code in the file `lib/rails_erb_credentials`. To experiment with that code, run `bin/console` for an interactive prompt.
+Ever tried to upgrade your Rails 7.1 app to Rails 7.2 and found out that you have to update all your credentials files? Maybe you used ERB in your secrets and manage actual secrets with vault?
+
+This gem allows you to use ERB in your credentials files. Now you have best of both worlds! It is backward compatible with the existing Rails credentials and you can still have encrypted credentials files.
 
 ## Installation
 
-TODO: Replace `UPDATE_WITH_YOUR_GEM_NAME_IMMEDIATELY_AFTER_RELEASE_TO_RUBYGEMS_ORG` with your gem name right after releasing it to RubyGems.org. Please do not do it earlier due to security reasons. Alternatively, replace this section with instructions to install your gem from git if you don't plan to release to RubyGems.org.
+Add this line to your application's Gemfile:
 
-Install the gem and add to the application's Gemfile by executing:
+```ruby
+gem "rails_erb_credentials"
+```
 
-    $ bundle add UPDATE_WITH_YOUR_GEM_NAME_IMMEDIATELY_AFTER_RELEASE_TO_RUBYGEMS_ORG
+then
 
-If bundler is not being used to manage dependencies, install the gem by executing:
+```bash
+bundle install
+```
 
-    $ gem install UPDATE_WITH_YOUR_GEM_NAME_IMMEDIATELY_AFTER_RELEASE_TO_RUBYGEMS_ORG
+or
 
-## Usage
+```bash
+gem install rails_erb_credentials
+```
 
-TODO: Write usage instructions here
+Thats it, now if you have any ERB in your credentials files, it will be evaluated with the environment variables with the same name.
 
 ## Development
 
-After checking out the repo, run `bin/setup` to install dependencies. Then, run `rake test` to run the tests. You can also run `bin/console` for an interactive prompt that will allow you to experiment.
+After checking out the repo, run `bin/setup` to install dependencies. Then, run `bin/test` to run the tests. You can also run `bin/console` for an interactive prompt that will allow you to experiment.
 
 To install this gem onto your local machine, run `bundle exec rake install`. To release a new version, update the version number in `version.rb`, and then run `bundle exec rake release`, which will create a git tag for the version, push git commits and the created tag, and push the `.gem` file to [rubygems.org](https://rubygems.org).
 
 ## Contributing
 
-Bug reports and pull requests are welcome on GitHub at https://github.com/[USERNAME]/rails_erb_credentials. This project is intended to be a safe, welcoming space for collaboration, and contributors are expected to adhere to the [code of conduct](https://github.com/[USERNAME]/rails_erb_credentials/blob/main/CODE_OF_CONDUCT.md).
+Bug reports and pull requests are welcome on GitHub at https://github.com/Nuzair46/rails_erb_credentials. This project is intended to be a safe, welcoming space for collaboration, and contributors are expected to adhere to the [code of conduct](https://github.com/[USERNAME]/rails_erb_credentials/blob/main/CODE_OF_CONDUCT.md).
 
 ## License
 
@@ -36,4 +44,4 @@ The gem is available as open source under the terms of the [MIT License](https:/
 
 ## Code of Conduct
 
-Everyone interacting in the RailsErbCredentials project's codebases, issue trackers, chat rooms and mailing lists is expected to follow the [code of conduct](https://github.com/[USERNAME]/rails_erb_credentials/blob/main/CODE_OF_CONDUCT.md).
+Everyone interacting in the RailsErbCredentials project's codebases, issue trackers, chat rooms and mailing lists is expected to follow the [code of conduct](https://github.com/Nuzair46/rails_erb_credentials/blob/main/CODE_OF_CONDUCT.md).
