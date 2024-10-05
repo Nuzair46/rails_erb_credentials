@@ -11,13 +11,19 @@ module RailsErbCredentials
     def method_missing(method_name, *args, &block)
       if @original_credentials.respond_to?(method_name)
         value = @original_credentials.public_send(method_name, *args, &block)
-        if value.is_a?(String) && value.include?("<%=")
-          ERB.new(value).result(binding)
-        else
-          value
-        end
+        evaluate_value(value)
       else
         super
+      end
+    end
+
+    def evaluate_value(value)
+      if value.is_a?(Hash)
+        value.transform_values { |v| evaluate_value(v) }
+      elsif value.is_a?(String) && value.include?("<%=")
+        ERB.new(value).result(binding)
+      else
+        value
       end
     end
 
