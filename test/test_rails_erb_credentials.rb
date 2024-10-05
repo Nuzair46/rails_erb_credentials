@@ -15,7 +15,7 @@ class TestRailsErbCredentials < Minitest::Test
 
   def test_evaluates_erb_in_credentials
     # <%= ENV["TEST"] %>
-    assert_equal "my_actual_secret", Rails.application.credentials.test
+    assert_equal "my_actual_secret_for_test", Rails.application.credentials.test
   end
 
   def test_evaluates_erb_in_credentials_when_it_has_multiple_env_vars
